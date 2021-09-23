@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+/* Custom tasks */
+task generatorTest {
+    try {
+        URL[] urls = sourceSets.main.runtimeClasspath.files.collect { it.toURI().toURL() } as URL[]
+        def classloader = ClassLoader.getSystemClassLoader()
+        def urlClassloader = new URLClassLoader(urls, classloader)
+        Class generatorType = urlClassloader.loadClass('org.tyaa.demo.java.testing.gradle.Generator')
+        def generator = generatorType.getDeclaredConstructors()[0].newInstance()
+        final sampleSequence = List.of('B', 'C', 'D', 'E')
+        ext.givenGenerator_whenGenerateFromBToECalled_thenBCDEStringGenerated =
+                {
+                    expectedSequence, fromChar, toChar ->
+                        List<Character> sequence = generator.generate(fromChar, toChar)
+                        for (int i = 0; i < sequence.size(); i++) {
+                            if (sequence.get(i) != sampleSequence.get(i)) {
+                                printf 'Positive case "generatorTest" failed. %s is not equal to %s\n', sequence, sampleSequence
+                                break
+                            }
+                        }
+                        println 'Positive case "generatorTest" was successful'
+                }
+        ext.givenGenerator_whenGenerateFromBToNullCalled_thenNullPointerExceptionThrown =
+                {
+                    fromChar, toChar ->
+                        try {
+                            println generator.generate(fromChar, toChar)
+                            println 'Negative case "generatorTest" failed. No IllegalArgumentException was thrown.'
+                        } catch (IllegalArgumentException ignored) {
+                            println 'Negative case "generatorTest" was successful'
+                        }
+                }
+        doLast {
+            ext.givenGenerator_whenGenerateFromBToECalled_thenBCDEStringGenerated(
+                    sampleSequence,
+                    'B' as char,
+                    'E' as char
+            )
+            ext.givenGenerator_whenGenerateFromBToNullCalled_thenNullPointerExceptionThrown(
+                    'E' as char,
+                    'B' as char
+            )
+        }
+    } catch (ClassNotFoundException ex) {
+        ex.printStackTrace()
+    }
+}
