@@ -12,6 +12,8 @@ public abstract class AbstractShape {
 
     public abstract Double getLength();
 
+    public abstract Double getArea();
+
     public String getName() {
         return this.getClass().getSimpleName();
     }

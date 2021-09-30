@@ -2,8 +2,8 @@ package org.tyaa.demo.java.testing.gradle.models;
 
 public class Line extends AbstractShape {
 
-    public Double x1 = 0d;
-    public Double y1 = 0d;
+    public Double x1;
+    public Double y1;
 
     public Line(Double x0, Double y0, Double x1, Double y1) {
         super(x0, y0);
@@ -14,6 +14,11 @@ public class Line extends AbstractShape {
     @Override
     public Double getLength() {
         return Math.sqrt(Math.pow(x1 - x0, 2) + Math.pow(y1 - y0, 2));
+    }
+
+    @Override
+    public Double getArea() {
+        return 0d;
     }
 
     @Override

@@ -19,6 +19,7 @@ public class Triangle extends AbstractShape {
         return line1Length + line2Length + line3Length;
     }
 
+    @Override
     public Double getArea() {
         Double a = Math.sqrt(Math.pow(secondPoint.x0 - x0, 2) + Math.pow(secondPoint.y0 - y0, 2));
         Double b = Math.sqrt(Math.pow(x0 - thirdPoint.x0, 2) + Math.pow(y0 - thirdPoint.y0, 2));

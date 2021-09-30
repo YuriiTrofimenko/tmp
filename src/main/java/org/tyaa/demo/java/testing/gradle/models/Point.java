@@ -12,6 +12,11 @@ public class Point extends AbstractShape {
     }
 
     @Override
+    public Double getArea() {
+        return 0d;
+    }
+
+    @Override
     public String toString() {
         return "Point{" +
             "x0=" + x0 +

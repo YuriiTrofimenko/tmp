@@ -16,6 +16,7 @@ public class Rectangle extends AbstractShape {
         return 2 * width + 2 * height;
     }
 
+    @Override
     public Double getArea(){
         return width * height;
     }
