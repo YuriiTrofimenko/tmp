@@ -1,8 +1,9 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
 import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
+import org.tyaa.demo.java.testing.gradle.interfaces.IShape;
 
-public class Triangle extends AbstractShape implements IAreable {
+public class Triangle extends AbstractShape implements IAreable, IShape {
 
     public Point secondPoint;
     public Point thirdPoint;

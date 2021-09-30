@@ -1,9 +1,12 @@
 package org.tyaa.demo.java.testing.gradle;
 
+import jdk.jshell.spi.ExecutionControl;
 import org.tyaa.demo.java.testing.gradle.delegates.ICustomComparator;
 import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
+import org.tyaa.demo.java.testing.gradle.interfaces.IShape;
 import org.tyaa.demo.java.testing.gradle.models.*;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +15,7 @@ public class Main {
 
     // private static int lambdaCalls = 0;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionControl.NotImplementedException, NoSuchFieldException, IllegalAccessException {
         // 1. The difference between char and Character types
         /* char primitiveChar = 'A';
         Character referenceChar = 'A';
@@ -75,7 +78,7 @@ public class Main {
         System.out.println(lambdaCalls);
         // integers.forEach(System.out::println);
         orders.forEach(System.out::println); */
-        List<AbstractShape> orders = new ArrayList<>(List.of(
+        List<IShape> orders = new ArrayList<>(List.of(
             new Point(200d, 300d),
             new Line(0d, 0d, 100d, 200d),
             new Rectangle(100d, 50d, 200d, 350d),
@@ -102,6 +105,30 @@ public class Main {
                 System.out.println("No area\n");
             }
         });
+
+        // Rectangle r1 = new Rectangle(100d, 50d, 200d, 350d);
+        // r1.setColor("green");
+
+        // SecuredClass aClass = new SecuredClass();
+        /* Field[] fields =
+            aClass.getClass().getDeclaredFields();
+        for (int i = 0; i < fields.length; i++) {
+            System.out.println(fields[i].getName());
+        } */
+        /* Field field =
+            aClass.getClass().getDeclaredField("creditCardPassword");
+        field.setAccessible(true);
+        System.out.printf("Field: %s, value: %s\n", field.getName(), field.get(aClass));
+        field.set(aClass, "123");
+        System.out.printf("Field: %s, value: %s\n", field.getName(), field.get(aClass)); */
+
+        /* List items = new ArrayList();
+        items.add(1);
+        items.add("asd"); */
+
+        List<Integer> items = new ArrayList<>();
+        items.add(1);
+        // items.add("asd");
     }
     /* public static char increasePrimitiveChar(char x) {
         return ++x;

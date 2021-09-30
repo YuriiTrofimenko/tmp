@@ -1,8 +1,9 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
 import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
+import org.tyaa.demo.java.testing.gradle.interfaces.IShape;
 
-public class Rectangle extends StaticColorShapeAdapter implements IAreable {
+public class Rectangle extends AbstractShape implements IAreable, IShape {
 
     public Double width;
     public Double height;

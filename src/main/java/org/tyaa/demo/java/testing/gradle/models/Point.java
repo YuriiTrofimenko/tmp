@@ -1,6 +1,8 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
-public class Point extends AbstractShape {
+import org.tyaa.demo.java.testing.gradle.interfaces.IShape;
+
+public class Point extends AbstractShape implements IShape {
 
     public String color;
 

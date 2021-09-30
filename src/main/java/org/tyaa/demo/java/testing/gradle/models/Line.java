@@ -1,6 +1,8 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
-public class Line extends AbstractShape {
+import org.tyaa.demo.java.testing.gradle.interfaces.IShape;
+
+public class Line extends AbstractShape implements IShape {
 
     enum Color {
         BLACK, WHITE
