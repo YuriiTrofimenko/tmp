@@ -1,6 +1,7 @@
 package org.tyaa.demo.java.testing.gradle;
 
 import org.tyaa.demo.java.testing.gradle.delegates.ICustomComparator;
+import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
 import org.tyaa.demo.java.testing.gradle.models.*;
 
 import java.util.ArrayList;
@@ -87,7 +88,7 @@ public class Main {
                 shape,
                 shape.getLength()
             );
-            System.out.printf("Area = %s\n\n", shape.getArea());
+            // System.out.printf("Area = %s\n\n", shape.getArea());
             /* if (shape instanceof Rectangle) {
                 System.out.printf("Area = %s\n\n", ((Rectangle)shape).getArea());
             } else if (shape instanceof Triangle) {
@@ -95,6 +96,11 @@ public class Main {
             } else {
                 System.out.println("No area\n");
             } */
+            if (shape instanceof IAreable) {
+                System.out.printf("Area = %s\n\n", ((IAreable)shape).getArea());
+            } else {
+                System.out.println("No area\n");
+            }
         });
     }
     /* public static char increasePrimitiveChar(char x) {

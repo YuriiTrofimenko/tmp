@@ -2,6 +2,12 @@ package org.tyaa.demo.java.testing.gradle.models;
 
 public class Line extends AbstractShape {
 
+    enum Color {
+        BLACK, WHITE
+    }
+
+    public Color color;
+
     public Double x1;
     public Double y1;
 
@@ -17,8 +23,13 @@ public class Line extends AbstractShape {
     }
 
     @Override
-    public Double getArea() {
-        return 0d;
+    public Color getColor() {
+        return null;
+    }
+
+    @Override
+    public <T> void setColor(T color) {
+        this.color = (Color) color;
     }
 
     @Override

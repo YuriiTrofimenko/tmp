@@ -12,9 +12,15 @@ public abstract class AbstractShape {
 
     public abstract Double getLength();
 
-    public abstract Double getArea();
-
     public String getName() {
         return this.getClass().getSimpleName();
     }
+
+    public abstract <T> T getColor();
+
+    /* public <T> void setColor(T color) {
+
+    } */
+
+    public abstract <T> void setColor(T color);
 }

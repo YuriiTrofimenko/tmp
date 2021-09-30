@@ -2,6 +2,8 @@ package org.tyaa.demo.java.testing.gradle.models;
 
 public class Point extends AbstractShape {
 
+    public String color;
+
     public Point(Double x0, Double y0) {
         super(x0, y0);
     }
@@ -12,8 +14,13 @@ public class Point extends AbstractShape {
     }
 
     @Override
-    public Double getArea() {
-        return 0d;
+    public String getColor() {
+        return "red";
+    }
+
+    @Override
+    public <T> void setColor(T color) {
+        this.color = (String) color;
     }
 
     @Override

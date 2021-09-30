@@ -1,6 +1,8 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
-public class Rectangle extends AbstractShape {
+import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
+
+public class Rectangle extends StaticColorShapeAdapter implements IAreable {
 
     public Double width;
     public Double height;
@@ -14,6 +16,11 @@ public class Rectangle extends AbstractShape {
     @Override
     public Double getLength() {
         return 2 * width + 2 * height;
+    }
+
+    @Override
+    public String getColor() {
+        return "black";
     }
 
     @Override

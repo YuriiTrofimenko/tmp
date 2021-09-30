@@ -1,6 +1,8 @@
 package org.tyaa.demo.java.testing.gradle.models;
 
-public class Triangle extends AbstractShape {
+import org.tyaa.demo.java.testing.gradle.interfaces.IAreable;
+
+public class Triangle extends AbstractShape implements IAreable {
 
     public Point secondPoint;
     public Point thirdPoint;
@@ -17,6 +19,16 @@ public class Triangle extends AbstractShape {
         Double line2Length = Math.sqrt(Math.pow(x0 - thirdPoint.x0, 2) + Math.pow(y0 - thirdPoint.y0, 2));
         Double line3Length = Math.sqrt(Math.pow(thirdPoint.x0 - secondPoint.x0, 2) + Math.pow(thirdPoint.y0 - secondPoint.y0, 2));
         return line1Length + line2Length + line3Length;
+    }
+
+    @Override
+    public <T> T getColor() {
+        return null;
+    }
+
+    @Override
+    public <T> void setColor(T color) {
+
     }
 
     @Override
