@@ -87,7 +87,14 @@ public class Main {
                 shape,
                 shape.getLength()
             );
-            System.out.println("Area?...");
+            //
+            if (shape instanceof Rectangle) {
+                System.out.printf("Area = %s\n\n", ((Rectangle)shape).getArea());
+            } else if (shape instanceof Triangle) {
+                System.out.printf("Area = %s\n\n", ((Triangle)shape).getArea());
+            } else {
+                System.out.println("No area\n");
+            }
         });
     }
     /* public static char increasePrimitiveChar(char x) {
