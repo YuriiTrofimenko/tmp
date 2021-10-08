@@ -1,6 +1,5 @@
 package org.tyaa.demo.java.testing.gradle;
 
-import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -69,22 +68,63 @@ public class Tmp {
                 }
             } while (true);
         }
+        if (numbers.size() == 0) {
+            System.out.println("No numbers in the list. Exit.");
+            System.exit(0);
+        }
         List<char[]> chars =
             numbers.stream()
                 .map(number -> String.valueOf(number).toCharArray())
                 .collect(Collectors.toList());
         // 1
+        System.out.println("*** 1 ***");
+        char[] minNumberArray = chars.stream().min(Comparator.comparingInt(ch -> ch.length)).get();
         System.out.printf(
-            "The shortes number: %s\n",
-            charArrayToDouble(chars.stream().min(Comparator.comparingInt(ch -> ch.length)).get())
+            "The shortes number: %s (length: %s)\n",
+            charArrayToNumber(minNumberArray),
+            minNumberArray.length
         );
-        System.out.printf(
-            "The longest number: %s\n",
-            charArrayToDouble(chars.stream().max(Comparator.comparingInt(ch -> ch.length)).get())
+        char[] maxNumberArray = chars.stream().max(Comparator.comparingInt(ch -> ch.length)).get();
+            System.out.printf(
+            "The longest number: %s (length: %s)\n",
+            charArrayToNumber(maxNumberArray),
+            maxNumberArray.length
         );
+        // 2
+        System.out.println("*** 2 ***");
+        System.out.println("From min to max");
+        chars.stream()
+            // .sorted(Comparator.comparingInt(n -> n.length))
+            // .sorted(Comparator.comparingInt(n -> -n.length))
+            .sorted((numberArray1, numberArray2) -> numberArray1.length - numberArray2.length)
+            .map(Tmp::charArrayToNumber)
+            // .map(array -> charArrayToNumber(array))
+            // .map(array -> {
+            //     return charArrayToNumber(array);
+            // })
+            .forEach(System.out::println);
+        System.out.println();
+        // 3
+        System.out.println("*** 3 ***");
+        int lengthSum = chars.stream()
+            .map(array -> array.length)
+            .reduce(Integer::sum).get();
+        int numbersSize = numbers.size();
+        long lengthAvg = Math.round(((double) lengthSum) / ((double) numbersSize));
+        System.out.printf("Avenger length", lengthSum);
+        System.out.println();
+        System.out.println("Sorted numbers (ASC)");
+        chars.stream()
+            .filter(array -> array.length < lengthAvg)
+            .forEach(System.out::println);
     }
 
-    private static Double charArrayToDouble(char[] chars) {
-        return Double.parseDouble(String.valueOf(chars));
+    private static Number charArrayToNumber(char[] chars) {
+        String string = String.valueOf(chars);
+        if (string.contains(".")) {
+            return Double.parseDouble(string);
+        } else {
+            return Integer.parseInt(string);
+        }
     }
 }
