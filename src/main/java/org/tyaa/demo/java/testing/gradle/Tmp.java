@@ -1,10 +1,14 @@
 package org.tyaa.demo.java.testing.gradle;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.*;
 import java.util.stream.Collectors;
+import org.tyaa.demo.java.testing.gradle.models.*;
 
 public class Tmp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException, InterruptedException {
         /* BigDecimal b1 = new BigDecimal("23.47");
         BigDecimal b2 = new BigDecimal("23.47");
         System.out.println(b1.hashCode());
@@ -43,7 +47,7 @@ public class Tmp {
 
         // System.out.println(charArrayToDouble(new char[] {'1', '2', '3'}));
 
-        Scanner sc = new Scanner(System.in);
+        /* Scanner sc = new Scanner(System.in);
         List<Number> numbers = new ArrayList<>();
         MAIN_LOOP : while (true) {
             do {
@@ -116,9 +120,56 @@ public class Tmp {
         System.out.println("Sorted numbers (ASC)");
         chars.stream()
             .filter(array -> array.length < lengthAvg)
-            .forEach(System.out::println);
-    }
+            .forEach(System.out::println); */
 
+        // Integer result = null;
+        /* try {
+            result = 10 / 0;
+        } catch (RuntimeException ex) {
+            System.out.println(ex.getMessage());
+            // result = 20 / 0;
+            throw new RuntimeException("New Exception");
+        } finally {
+            System.out.printf("Result is: %s", result);
+        } */
+
+        // try (PrintWriter writer = new PrintWriter(System.out)) {
+            /* writer.append("First");
+            writer.append("Second");
+            writer.append("Third");
+            writer.flush(); */
+            // result = 10 / 0;
+        // }
+
+        // PrintWriter writer = new PrintWriter(System.out);
+        /* PrintWriter writer = new PrintWriter(new FileOutputStream("Result.txt"));
+        try {
+            writer.append("First ");
+            writer.append("Second ");
+            writer.append("Third");
+            writer.flush();
+            //writer.close();
+            // result = 10 / 0;
+        } catch (Exception ignore) {}
+        Thread.sleep(60000);
+        System.out.println("Finish"); */
+
+        /* List l = List.of(1, 2, 3);
+        ArrayList<Integer> al = null;
+        al.sort(Comparator.comparingInt(o -> o));
+        LinkedList ll; */
+        // Object o1;
+
+        /* Order o1 = new Order("n1", 10.0, 100);
+        Order o2 = new Order("n1", 10.0, 100);
+        Order o3 = new Order("n2", 100.0, 10);
+        System.out.printf("o1 == o2 -> %s (Hash Codes: %s, %s)\n", o1.equals(o2), o1.hashCode(), o2.hashCode());
+        System.out.printf("o1 == o3 -> %s (Hash Codes: %s, %s)", o1.equals(o3), o1.hashCode(), o3.hashCode()); */
+
+        Demo d1 = new Demo(10, 20);
+        Demo d2 = new Demo(20, 10);
+        System.out.printf("d1 == d2 -> %s (Hash Codes: %s, %s)\n", d1.equals(d2), d1.hashCode(), d2.hashCode());
+    }
     private static Number charArrayToNumber(char[] chars) {
         String string = String.valueOf(chars);
         if (string.contains(".")) {
