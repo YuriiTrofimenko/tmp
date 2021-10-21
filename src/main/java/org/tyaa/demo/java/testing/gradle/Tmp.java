@@ -47,7 +47,7 @@ public class Tmp {
 
         // System.out.println(charArrayToDouble(new char[] {'1', '2', '3'}));
 
-        /* Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         List<Number> numbers = new ArrayList<>();
         MAIN_LOOP : while (true) {
             do {
@@ -80,7 +80,7 @@ public class Tmp {
             numbers.stream()
                 .map(number -> String.valueOf(number).toCharArray())
                 .collect(Collectors.toList());
-        // 1
+        /* // 1
         System.out.println("*** 1 ***");
         char[] minNumberArray = chars.stream().min(Comparator.comparingInt(ch -> ch.length)).get();
         System.out.printf(
@@ -166,9 +166,35 @@ public class Tmp {
         System.out.printf("o1 == o2 -> %s (Hash Codes: %s, %s)\n", o1.equals(o2), o1.hashCode(), o2.hashCode());
         System.out.printf("o1 == o3 -> %s (Hash Codes: %s, %s)", o1.equals(o3), o1.hashCode(), o3.hashCode()); */
 
-        Demo d1 = new Demo(10, 20);
+        /* Demo d1 = new Demo(10, 20);
         Demo d2 = new Demo(20, 10);
-        System.out.printf("d1 == d2 -> %s (Hash Codes: %s, %s)\n", d1.equals(d2), d1.hashCode(), d2.hashCode());
+        System.out.printf("d1 == d2 -> %s (Hash Codes: %s, %s)\n", d1.equals(d2), d1.hashCode(), d2.hashCode()); */
+
+        // 4
+        Map<char[], Integer> stats = chars.stream().collect(Collectors.toMap(
+            numberArray -> numberArray,
+            numberArray -> {
+                Set<Character> uniqueChars = new TreeSet<>();
+                for (char currentChar : numberArray) {
+                    uniqueChars.add(currentChar);
+                }
+                return uniqueChars.size();
+            },
+            (oldValue, newValue) -> oldValue,
+            LinkedHashMap::new
+        ));
+        stats.forEach((charArray, uniqueCharsCount) ->
+            System.out.printf("%s -> %s\n", charArrayToNumber(charArray), uniqueCharsCount));
+        System.out.println();
+        stats.entrySet().stream().sorted((e1, e2) -> e1.getValue() - e2.getValue()) // Comparator.comparingInt(Map.Entry::getValue)
+        // stats.entrySet().stream().sorted((e1, e2) -> e2.getValue() - e1.getValue())
+            .forEach((entry) ->
+                System.out.printf("%s -> %s\n", charArrayToNumber(entry.getKey()), entry.getValue()));
+        System.out.println();
+        Map.Entry<char[], Integer> resultEntry =
+            stats.entrySet().stream().min(Comparator.comparingInt(Map.Entry::getValue)).get();
+        // System.out.printf("Result: %s -> %s\n", charArrayToNumber(resultEntry.getKey()), resultEntry.getValue());
+        System.out.printf("Result: %s -> %s\n", charArrayToNumber(resultEntry.getKey()), resultEntry.getValue());
     }
     private static Number charArrayToNumber(char[] chars) {
         String string = String.valueOf(chars);
